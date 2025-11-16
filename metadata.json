@@ -1,0 +1,5 @@
+{
+  "name": "Copy of Prompt Wizard",
+  "description": "An advanced AI-powered application for generating precise and rich prompts for generative AI models (text-to-image, text-to-text) from either images or simple text inputs. It helps users craft detailed prompts with modular control over scene, subject, style, lighting, and more.",
+  "requestFramePermissions": []
+}

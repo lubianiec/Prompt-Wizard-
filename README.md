@@ -13,50 +13,55 @@
 ---
 
 ### 🇵🇱 (PL)
-**Prompt Wizard** to inteligentny asystent do inżynierii promptów, który bez wysiłku przekształca Twoje proste pomysły w szczegółowe i skuteczne prompty dla modeli AI, takich jak Midjourney, Stable Diffusion czy DALL-E 3. Niezależnie od tego, czy pracujesz z tekstem, czy z obrazem, Prompt Wizard jest Twoim narzędziem do tworzenia doskonałych zapytań.
+
+Masz genialny pomysł, ale nie wiesz, jak go opisać, by AI Cię zrozumiało? **Prompt Wizard** to Twoja magiczna różdżka! 🧙‍♂️ Zmień proste hasła w potężne, precyzyjne prompty, które wyczarują dokładnie to, czego oczekujesz od modeli takich jak Midjourney, Stable Diffusion czy DALL-E 3. Niezależnie od tego, czy zaczynasz od kilku słów, czy od gotowego obrazu – uwolnij swoją kreatywność bez ograniczeń!
 
 ### 🇬🇧 (EN)
-**Prompt Wizard** is your intelligent assistant for prompt engineering. It effortlessly transforms your simple ideas into detailed, effective prompts for AI models like Midjourney, Stable Diffusion, and DALL-E 3. Whether you're working with text or images, Prompt Wizard is your go-to tool for crafting the perfect query.
+
+Got a brilliant idea but don't know how to ask an AI to create it? **Prompt Wizard** is your magic wand! 🧙‍♂️ Turn simple thoughts into powerful, precise prompts that conjure exactly what you want from models like Midjourney, Stable Diffusion, and DALL-E 3. Whether you're starting with a few words or an existing image, unleash your creativity without limits!
+
+---
+
+<div align="center">
+
+**[Tutaj wstaw GIF-a pokazującego działanie aplikacji / Insert a GIF showcasing the app here]**
+
+*A screen recording showing the workflow: from typing 'a cat on Mars' to copying the final, advanced prompt.*
+
+</div>
+
+---
 
 ## ✨ Kluczowe Funkcje / Key Features
 
--   **Wielomodalne Wejście / Multimodal Input**: Generuj prompty na podstawie prostego **tekstu** lub poprzez analizę przesłanego **obrazu**.
--   **Różnorodne Formaty Wyjściowe / Diverse Output Formats**:
-    -   **Prompt Ogólny / General Prompt**: Tworzy profesjonalny, ustrukturyzowany brief (ROLA, ZADANIE, KONTEKST) dla złożonych zadań, jak generowanie kodu czy tworzenie treści.
-    -   **Prompt Obrazu / Image Prompt**: Generuje zwięzłą, oddzieloną przecinkami listę słów kluczowych – idealną do szybkiego użycia w modelach text-to-image.
-    -   **Szczegóły (Zaawansowany Obraz) / Detailed View**: Zapewnia edytowalny, modularny widok promptu, dając pełną kontrolę nad każdym aspektem generowanego obrazu.
-    -   **Prompt Wideo / Video Prompt**: Łączy analizę wizualną obrazu z Twoim opisem sceny, kładąc nacisk na wierność postaci i filmowy charakter ujęcia.
--   **Inteligentna Analiza / Intelligent Analysis**: Aplikacja wykorzystuje moc **Google Gemini**, aby zrozumieć kontekst, przeanalizować obrazy i dostarczyć precyzyjne, skuteczne wyniki.
--   **Dwujęzyczny Interfejs / Bilingual Interface**: Płynnie przełączaj się między językiem **polskim** i **angielskim**.
--   **Czysty i Elegancki Design / Clean & Elegant Design**: Minimalistyczny, neomorficzny ciemny motyw, który skupia się na funkcjonalności i komforcie użytkowania.
+-   🔮 **Magia Wielu Wejść**: Generuj prompty z prostego **tekstu** (`"cyberpunkowy kot w deszczu"`) lub analizując **obraz**, który Cię inspiruje.
+-   📝 **Różnorodne Formaty Wyjściowe**:
+    -   **Profesjonalny**: Tworzy ustrukturyzowany brief (ROLA, ZADANIE, KONTEKST) idealny do zadań takich jak kodowanie czy pisanie.
+    -   **Kompaktowy**: Szybka, gotowa do wklejenia lista słów kluczowych dla modeli text-to-image.
+    -   **Szczegółowy**: Pełna kontrola! Edytuj każdy moduł promptu (scena, postać, styl), aby dopracować swoją wizję.
+    -   **Wideo**: Połącz obraz z opisem ruchu, aby stworzyć kinowe prompty wideo, które zachowują spójność wizualną.
+-   🧠 **Inteligentna Analiza**: Wykorzystuje potęgę **Google Gemini**, aby dogłębnie zrozumieć Twoje intencje i wygenerować precyzyjne, skuteczne prompty.
+-   🌐 **Dwujęzyczny Interfejs**: Płynnie przełączaj się między **polskim** a **angielskim**.
+-   🎨 **Czysty i Elegancki Design**: Neomorficzny ciemny motyw, który jest przyjemny dla oczu i pozwala skupić się na tworzeniu.
 
 ---
 
-## 🚀 Jak Używać / How To Use
+## 🚀 Jak Zacząć / How to Get Started
 
-1.  **Wybierz tryb / Choose your mode**: Zacznij od tekstu (`Generate from Text`) lub obrazu (`Generate from Image`).
-2.  **Dostarcz dane / Provide input**: Wpisz swój pomysł, wklej tekst lub po prostu przeciągnij i upuść obraz.
-3.  **Wybierz typ promptu / elect prompt type**:
-    -   `General`: Dla zadań tekstowych (np. "stwórz skrypt").
-    -   `Image`: Szybki, zwięzły prompt do generowania obrazów.
-    -   `Details`: Zaawansowany, modularny prompt do precyzyjnego dostosowywania obrazów.
-4.  **Generuj i Kopiuj / Generate & Copy**: Otrzymaj profesjonalnie przygotowany prompt i skopiuj go jednym kliknięciem. Gotowe do wklejenia w Twoim ulubionym modelu AI!
+1.  **Wybierz źródło**: Tekst czy obraz?
+2.  **Podaj pomysł**: Wpisz kilka słów lub upuść plik.
+3.  **Wybierz styl promptu**: Profesjonalny, Kompaktowy, czy Szczegółowy?
+4.  **Generuj i Kopiuj**: Kliknij, skopiuj i wklej do swojego ulubionego AI. Magia! ✨
 
 ---
 
-## 🧠 Jak to Działa / How It Works
+## 🛠️ Jak to Działa & Stos Technologiczny / How It Works & Tech Stack
 
-Aplikacja komunikuje się z **Google Gemini API**, wysyłając dane wejściowe (tekst lub obraz) wraz z precyzyjnie opracowanymi instrukcjami systemowymi. Te instrukcje kierują modelem AI, aby generował wyniki w pożądanym formacie – czy to ustrukturyzowany JSON dla widoku szczegółowego, czy zwięzły paragraf dla prostego promptu. Cały proces jest zoptymalizowany, aby zapewnić najwyższą jakość i spójność odpowiedzi.
-
-The application communicates with the **Google Gemini API**, sending the input data (text or image) along with a set of carefully crafted system instructions. These instructions guide the AI model to generate output in the desired format—be it a structured JSON for the detailed view or a concise paragraph for the simple prompt. The entire process is optimized to ensure high-quality and consistent results.
-
----
-
-## 🛠️ Stos Technologiczny / Tech Stack
+Aplikacja komunikuje się z **Google Gemini API**, wysyłając Twoje dane wejściowe wraz ze specjalnie przygotowanymi instrukcjami systemowymi. Te instrukcje prowadzą model AI, aby wygenerował odpowiedź w idealnym formacie – czy to jako ustrukturyzowany JSON, czy zwięzły akapit. Cały proces jest zoptymalizowany pod kątem najwyższej jakości.
 
 -   **Frontend**: React, TypeScript
 -   **AI**: Google Gemini API (`@google/genai`)
--   **Stylizacja / Styling**: Tailwind CSS
+-   **Styling**: Tailwind CSS
 -   **UI Design**: Neumorphism (Design by **lubianiec**)
 
 ---
@@ -69,4 +74,4 @@ Masz pomysł na ulepszenie? Chcesz naprawić błąd? Kontrybucje są mile widzia
 2.  Stwórz nową gałąź / Create your Feature Branch (`git checkout -b feature/AmazingFeature`).
 3.  Zacommituj swoje zmiany / Commit your Changes (`git commit -m 'Add some AmazingFeature'`).
 4.  Wypchnij zmiany na swoją gałąź / Push to the Branch (`git push origin feature/AmazingFeature`).
-5.  Otwórz Pull Request / Open a Pull Requ
+5.  Otwórz Pull Request / Open a Pull Request.

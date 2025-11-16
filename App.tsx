@@ -30,11 +30,19 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const checkKey = async () => {
-      setIsCheckingKey(true);
-      if (await window.aistudio.hasSelectedApiKey()) {
-        setIsKeyReady(true);
+      // No need to set isCheckingKey to true here, it's already true initially.
+      try {
+        if (await window.aistudio.hasSelectedApiKey()) {
+          setIsKeyReady(true);
+        }
+      } catch (e) {
+        console.error("Error checking for API key:", e);
+        // Assume no key is ready if an error occurs.
+        setIsKeyReady(false);
+      } finally {
+        // This is crucial: always stop checking, even if there was an error.
+        setIsCheckingKey(false);
       }
-      setIsCheckingKey(false);
     };
     checkKey();
   }, []);

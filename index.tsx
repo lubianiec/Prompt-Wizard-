@@ -19,7 +19,7 @@ export default function Home() {
       const HF_TOKEN = import.meta.env.VITE_HF_TOKEN;
 
       if (!HF_TOKEN) {
-        throw new Error("Brak klucza Hugging Face – sprawdź zmienne środowiskowe na Vercelu!");
+        throw new Error("Brak klucza Hugging Face – coś poszło nie tak z Vercel variables!");
       }
 
       const res = await fetch(
@@ -44,22 +44,97 @@ export default function Home() {
 
       if (!res.ok) {
         const err = await res.text();
-        throw new Error(`Błąd HF: ${res.status} – ${err}`);
+        throw new Error(`Błąd Hugging Face: ${res.status} – ${err}`);
       }
 
       const data = await res.json();
       let text = "";
       if (Array.isArray(data) && data[0]?.generated_text) {
-        text = data[0].generated_text;
+        text = data[0].generated_text.trim();
       } else if (data.generated_text) {
-        text = data.generated_text;
+        text = data.generated_text.trim();
       } else {
-        text = JSON.stringify(data);
+        text = "Coś poszło nie tak... Spróbuj jeszcze raz!";
       }
 
-      setResponse(text.trim());
+      setResponse(text);
     } catch (err: any) {
-      setResponse(`😱 Błąd: ${err.message}`);
+      setResponse(`Oops! Błąd: ${err.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(response);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
+      <div className="container mx-auto px-4 py-12 max-w-5xl">
+        {/* Nagłówek */}
+        <div className="text-center mb-12">
+          <h1 className="text-6xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-4">
+            <Sparkles className="w-14 h-14 text-purple-600" />
+            Prompt Wizard
+            <Sparkles className="w-14 h-14 text-purple-600" />
+          </h1>
+          <p className="text-2xl text-gray-700">Testuj prompty za darmo na super mocnym Qwen 72B!</p>
+          <p className="text-lg text-green-600 font-bold mt-4">✅ 100% darmowe • Bez klucza • Hugging Face magic!</p>
+        </div>
+
+        {/* Formularz */}
+        <form onSubmit={handleSubmit} className="bg-white rounded-3xl shadow-2xl p-10 mb-10">
+          <textarea
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            placeholder="Wpisz swój prompt tutaj... np. Opowiedz bajkę o dzielnym smoku-programiście 🔥"
+            className="w-full h-64 p-6 text-lg border-2 border-purple-200 rounded-2xl focus:border-purple-500 focus:outline-none resize-none"
+            required
+          />
+          <button
+            type="submit"
+            disabled={loading}
+            className="mt-8 w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-6 rounded-2xl text-2xl hover:from-purple-700 hover:to-pink-700 transition flex items-center justify-center gap-4"
+          >
+            {loading ? (
+              <>
+                <Loader2 className="animate-spin w-10 h-10" />
+                Czaruję odpowiedź...
+              </>
+            ) : (
+              <>
+                <Sparkles className="w-10 h-10" />
+                Wyślij prompt!
+              </>
+            )}
+          </button>
+        </form>
+
+        {/* Odpowiedź */}
+        {response && (
+          <div className="bg-white rounded-3xl shadow-2xl p-10">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-3xl font-bold text-gray-800">Odpowiedź AI ✨</h2>
+              <button
+                onClick={copyToClipboard}
+                className="flex items-center gap-3 px-6 py-3 bg-purple-100 hover:bg-purple-200 rounded-xl transition font-medium"
+              >
+                <Copy className="w-6 h-6" />
+                {copied ? "Skopiowane!" : "Kopiuj"}
+              </button>
+            </div>
+            <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8 text-lg leading-relaxed whitespace-pre-wrap">
+              {response}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}      setResponse(`😱 Błąd: ${err.message}`);
     } finally {
       setLoading(false);
     }

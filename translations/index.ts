@@ -12,6 +12,9 @@ export const translations = {
       compactButton: 'Kompaktowy',
       detailedButton: 'Szczegółowy',
       includeImageDetailsLabel: 'Uwzględnij szczegóły obrazu',
+      imagePromptMode: 'Do Obrazu',
+      videoPromptMode: 'Do Wideo',
+      imageEditPlaceholder: 'Opcjonalnie: Opisz zmiany w obrazie...',
 
       // OutputPanel
       generatedPromptTitle: 'Wygenerowany Prompt',
@@ -19,13 +22,13 @@ export const translations = {
       loadingSubtitle: 'AI analizuje Twoje dane wejściowe.',
       placeholderTitle: 'Gotowy do tworzenia?',
       placeholderSubtitle: 'Wygeneruj prompt z tekstu lub obrazu.',
-      targetAI: 'Docelowy model AI',
       copyButton: 'Kopiuj Końcowy Prompt',
       copied: 'Skopiowano!',
       
       // Prompt Structure Keys
       scene: 'Scena / Kontekst',
       subject: 'Przedmiot / Subiekt',
+      outfit: 'Ubiór',
       style: 'Styl Wizualny',
       lighting: 'Oświetlenie',
       camera: 'Perspektywa / Kamera',
@@ -72,6 +75,9 @@ export const translations = {
       compactButton: 'Compact',
       detailedButton: 'Detailed',
       includeImageDetailsLabel: 'Include image details',
+      imagePromptMode: 'For Image',
+      videoPromptMode: 'For Video',
+      imageEditPlaceholder: 'Optional: Describe changes for the image...',
 
       // OutputPanel
       generatedPromptTitle: 'Generated Prompt',
@@ -79,13 +85,13 @@ export const translations = {
       loadingSubtitle: 'The AI is analyzing your input.',
       placeholderTitle: 'Ready to Create?',
       placeholderSubtitle: 'Generate a prompt from text or an image.',
-      targetAI: 'Target AI Model',
       copyButton: 'Copy Final Prompt',
       copied: 'Copied!',
       
       // Prompt Structure Keys
       scene: 'Scene / Context',
       subject: 'Subject',
+      outfit: 'Outfit',
       style: 'Visual Style',
       lighting: 'Lighting',
       camera: 'Perspective / Camera',

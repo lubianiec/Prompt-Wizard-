@@ -4,12 +4,12 @@ import Header from './components/Header';
 import InputPanel from './components/InputPanel';
 import OutputPanel from './components/OutputPanel';
 import { 
-  generatePromptFromImage, 
   generatePromptFromText, 
   generateCompactPromptFromText,
-  generateCompactPromptFromImage,
   generateVideoPromptFromImageAndText,
-  generateProfessionalPromptFromText
+  generateProfessionalPromptFromText,
+  generateCompactImageEditPrompt,
+  generateStructuredImageEditPrompt,
 } from './services/geminiService';
 import { fileToBase64 } from './utils/fileUtils';
 import { useLanguage } from './contexts/LanguageContext';
@@ -84,28 +84,30 @@ const App: React.FC = () => {
         } else {
              throw new Error(t('errorNoText'));
         }
-      } else if (inputMode === InputMode.IMAGE && data.file) {
-        if (!data.file.type.startsWith('image/')) {
-          throw new Error(t('errorInvalidImage'));
-        }
-        const { base64, mimeType } = await fileToBase64(data.file);
+      } else if (type === 'imageEdit') {
+        if (!data.file) throw new Error(t('errorNoInput'));
+        if (!data.file.type.startsWith('image/')) throw new Error(t('errorInvalidImage'));
 
-        if (data.videoDescription?.trim()) {
-          const result = await generateVideoPromptFromImageAndText(base64, mimeType, data.videoDescription, 'en', data.includeImageDetails);
-          setCompactPrompt(result);
-          setOutputTitle(t('videoPromptTitle'));
+        const { base64, mimeType } = await fileToBase64(data.file);
+        if (isDetailed) {
+            const result = await generateStructuredImageEditPrompt(base64, mimeType, data.text || '', 'en');
+            setPromptData(result);
+            setOutputTitle(t('structuredPromptTitle'));
         } else {
-            if (isDetailed) {
-                const result = await generatePromptFromImage(base64, mimeType, 'en');
-                setPromptData(result);
-                setOutputTitle(t('structuredPromptTitle'));
-            } else {
-                const result = await generateCompactPromptFromImage(base64, mimeType, 'en');
-                setCompactPrompt(result);
-                setOutputTitle(t('compactPromptTitle'));
-            }
+            const result = await generateCompactImageEditPrompt(base64, mimeType, data.text || '', 'en');
+            setCompactPrompt(result);
+            setOutputTitle(t('compactPromptTitle'));
         }
-      } else if (inputMode === InputMode.TEXT && data.text?.trim()) {
+      } else if (type === 'video') {
+        if (!data.file) throw new Error(t('errorNoInput'));
+        if (!data.file.type.startsWith('image/')) throw new Error(t('errorInvalidImage'));
+
+        const { base64, mimeType } = await fileToBase64(data.file);
+        const result = await generateVideoPromptFromImageAndText(base64, mimeType, data.videoDescription || '', 'en', data.includeImageDetails);
+        setCompactPrompt(result);
+        setOutputTitle(t('videoPromptTitle'));
+      }
+      else if (type === 'visual' && inputMode === InputMode.TEXT && data.text?.trim()) {
         if (isDetailed) {
           const result = await generatePromptFromText(data.text, 'en');
           setPromptData(result);

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { PromptStructure, TargetAI } from '../types';
-import { TARGET_AI_MODELS } from '../constants';
+import { PromptStructure } from '../types';
 import { CopyIcon, CheckIcon, SparklesIcon } from './icons/Icons';
 import Loader from './Loader';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -14,9 +13,20 @@ interface OutputPanelProps {
   outputTitle: string;
 }
 
+const promptKeys: (keyof PromptStructure)[] = [
+    'subject',
+    'outfit',
+    'scene',
+    'mood',
+    'style',
+    'lighting',
+    'camera',
+    'details',
+    'negativePrompt'
+];
+
 const OutputPanel: React.FC<OutputPanelProps> = ({ promptData, compactPrompt, setPromptData, isLoading, error, outputTitle }) => {
   const { t } = useLanguage();
-  const [targetAI, setTargetAI] = useState<TargetAI>(TargetAI.MIDJOURNEY);
   const [copied, setCopied] = useState(false);
   const [editableCompactPrompt, setEditableCompactPrompt] = useState('');
 
@@ -40,6 +50,7 @@ const OutputPanel: React.FC<OutputPanelProps> = ({ promptData, compactPrompt, se
     
     const parts = [
       promptData.subject,
+      promptData.outfit,
       promptData.scene,
       promptData.mood,
       promptData.style,
@@ -48,22 +59,8 @@ const OutputPanel: React.FC<OutputPanelProps> = ({ promptData, compactPrompt, se
       promptData.details
     ].filter(Boolean).join(', ');
 
-    let finalPrompt = parts;
-
-    if (targetAI === TargetAI.MIDJOURNEY) {
-      finalPrompt += ` --ar 16:9`;
-      if (promptData.negativePrompt) {
-        finalPrompt += ` --no ${promptData.negativePrompt}`;
-      }
-    } else if (targetAI === TargetAI.STABLE_DIFFUSION) {
-        if (promptData.negativePrompt) {
-            finalPrompt += `\nNegative prompt: ${promptData.negativePrompt}`;
-        }
-    }
-    // DALL-E prefers natural language, so we don't add special parameters.
-
-    return finalPrompt;
-  }, [promptData, compactPrompt, editableCompactPrompt, targetAI]);
+    return parts;
+  }, [promptData, compactPrompt, editableCompactPrompt]);
 
   const copyToClipboard = useCallback(() => {
     const fullPrompt = assemblePrompt();
@@ -112,19 +109,22 @@ const OutputPanel: React.FC<OutputPanelProps> = ({ promptData, compactPrompt, se
     if (promptData) {
         return (
             <div className="space-y-4">
-              {Object.entries(promptData).map(([key, value]) => (
-                <div key={key}>
-                  <label className="text-sm font-bold text-[#F0F0F0] capitalize mb-1 block">
-                    {t(key as keyof PromptStructure)}
-                  </label>
-                  <textarea
-                    value={value}
-                    onChange={(e) => handleModuleChange(key as keyof PromptStructure, e.target.value)}
-                    className={`w-full p-2 bg-[#2B273A] rounded-xl border-none focus:outline-none focus:shadow-[inset_3px_3px_7px_#1b1825,inset_-3px_-3px_7px_#3b364f] transition-shadow resize-y text-[#F0F0F0] ${insetStyle}`}
-                    rows={key === 'scene' || key === 'subject' ? 3 : 2}
-                  />
-                </div>
-              ))}
+              {promptKeys.map((key) => {
+                const value = promptData[key] ?? '';
+                return (
+                  <div key={key}>
+                    <label className="text-sm font-bold text-[#F0F0F0] capitalize mb-1 block">
+                      {t(key as keyof PromptStructure)}
+                    </label>
+                    <textarea
+                      value={value}
+                      onChange={(e) => handleModuleChange(key as keyof PromptStructure, e.target.value)}
+                      className={`w-full p-2 bg-[#2B273A] rounded-xl border-none focus:outline-none focus:shadow-[inset_3px_3px_7px_#1b1825,inset_-3px_-3px_7px_#3b364f] transition-shadow resize-y text-[#F0F0F0] ${insetStyle}`}
+                      rows={key === 'scene' || key === 'subject' ? 3 : 2}
+                    />
+                  </div>
+                );
+              })}
             </div>
         );
     }
@@ -150,17 +150,6 @@ const OutputPanel: React.FC<OutputPanelProps> = ({ promptData, compactPrompt, se
 
       {(promptData || compactPrompt) && !isLoading && (
         <div className="p-6 bg-[#2B273A] space-y-4">
-          <div>
-            <label htmlFor="target-ai" className="block text-sm font-medium text-[#F0F0F0] mb-2">{t('targetAI')}</label>
-            <select
-              id="target-ai"
-              value={targetAI}
-              onChange={(e) => setTargetAI(e.target.value as TargetAI)}
-              className={`w-full bg-[#2B273A] border-none rounded-xl pl-3 pr-10 py-2 text-left cursor-pointer focus:outline-none focus:shadow-[inset_3px_3px_7px_#1b1825,inset_-3px_-3px_7px_#3b364f] sm:text-sm appearance-none ${insetStyle}`}
-            >
-              {TARGET_AI_MODELS.map(model => <option key={model} value={model} className="bg-[#2B273A] text-[#F0F0F0]">{model}</option>)}
-            </select>
-          </div>
           <button
             onClick={copyToClipboard}
             className="w-full bg-[#F0C38E] text-[#312C51] font-bold py-3 px-4 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 shadow-[5px_5px_10px_#1b1825,-5px_-5px_10px_#3b364f] hover:shadow-[2px_2px_5px_#1b1825,-2px_-2px_5px_#3b364f] active:shadow-[inset_5px_5px_10px_#1b1825,inset_-5px_-5px_10px_#3b364f]"

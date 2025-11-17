@@ -3,15 +3,10 @@ export enum InputMode {
   IMAGE = 'image',
 }
 
-export enum TargetAI {
-  MIDJOURNEY = 'Midjourney',
-  STABLE_DIFFUSION = 'Stable Diffusion',
-  DALL_E = 'DALL-E 3',
-}
-
 export interface PromptStructure {
   scene: string;
   subject: string;
+  outfit?: string;
   style: string;
   lighting: string;
   camera: string;
@@ -20,7 +15,7 @@ export interface PromptStructure {
   negativePrompt: string;
 }
 
-export type GenerationType = 'visual' | 'professional' | 'video';
+export type GenerationType = 'visual' | 'professional' | 'video' | 'imageEdit';
 
 export enum Language {
   PL = 'PL',

@@ -53,11 +53,11 @@ export const translations = {
 
       // API Key Screen
       apiKeyTitle: 'Wymagany Klucz API',
-      apiKeyDescription: 'Aby korzystać z Prompt Wizard, musisz podać klucz API Google AI Studio. Umożliwi to aplikacji połączenie z modelem Gemini.',
-      apiKeyBillingPre: 'Korzystanie z Gemini API może wiązać się z kosztami. Proszę zapoznać się z',
+      apiKeyDescription: 'Aby korzystać z Prompt Wizard, musisz podać klucz API Hugging Face. Umożliwi to aplikacji połączenie z modelami Hugging Face.',
+      apiKeyBillingPre: 'Korzystanie z Hugging Face API może wiązać się z kosztami. Proszę zapoznać się z',
       apiKeyBillingLink: 'informacjami o rozliczeniach',
-      apiKeyButton: 'Wybierz Klucz API (AI Studio)',
-      apiKeyInputPlaceholder: 'Wprowadź swój klucz API Google Gemini',
+      apiKeyButton: 'Wybierz Klucz API (Hugging Face)',
+      apiKeyInputPlaceholder: 'Wprowadź swój klucz API Hugging Face',
       apiKeySaveButton: 'Zapisz i Kontynuuj',
       apiKeyDivider: 'LUB',
     },
@@ -116,11 +116,11 @@ export const translations = {
       
       // API Key Screen
       apiKeyTitle: 'API Key Required',
-      apiKeyDescription: 'To use Prompt Wizard, you need to provide a Google AI Studio API key. This enables the app to connect to the Gemini model.',
-      apiKeyBillingPre: 'Using the Gemini API may incur costs. Please review the',
+      apiKeyDescription: 'To use Prompt Wizard, you need to provide a Hugging Face API key. This enables the app to connect to Hugging Face models.',
+      apiKeyBillingPre: 'Using the Hugging Face API may incur costs. Please review the',
       apiKeyBillingLink: 'billing information',
-      apiKeyButton: 'Select API Key (AI Studio)',
-      apiKeyInputPlaceholder: 'Enter your Google Gemini API Key',
+      apiKeyButton: 'Select API Key (Hugging Face)',
+      apiKeyInputPlaceholder: 'Enter your Hugging Face API Key',
       apiKeySaveButton: 'Save & Continue',
       apiKeyDivider: 'OR',
     },

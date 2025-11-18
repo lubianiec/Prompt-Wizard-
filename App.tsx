@@ -10,7 +10,7 @@ import {
   generateProfessionalPromptFromText,
   generateCompactImageEditPrompt,
   generateStructuredImageEditPrompt,
-} from './services/geminiService';
+} from './services/huggingfaceService';
 import { fileToBase64 } from './utils/fileUtils';
 import { useLanguage } from './contexts/LanguageContext';
 import Loader from './components/Loader';
@@ -33,7 +33,7 @@ const App: React.FC = () => {
     const checkKey = async () => {
       setIsCheckingKey(true);
       try {
-        const storedKey = sessionStorage.getItem('gemini_api_key');
+        const storedKey = sessionStorage.getItem('huggingface_api_key');
         if (storedKey) {
           setIsKeyReady(true);
         } else if (typeof window.aistudio?.hasSelectedApiKey === 'function' && await window.aistudio.hasSelectedApiKey()) {
@@ -58,7 +58,7 @@ const App: React.FC = () => {
   
   const handleSaveKey = () => {
     if (apiKeyInput.trim()) {
-      sessionStorage.setItem('gemini_api_key', apiKeyInput.trim());
+      sessionStorage.setItem('huggingface_api_key', apiKeyInput.trim());
       setIsKeyReady(true);
       setApiKeyInput('');
     }
@@ -124,7 +124,7 @@ const App: React.FC = () => {
       console.error(e);
       if (e instanceof Error) {
         if (e.message.includes('API key not valid') || e.message.includes('Requested entity was not found')) {
-            sessionStorage.removeItem('gemini_api_key');
+            sessionStorage.removeItem('huggingface_api_key');
             setError(t('errorInvalidApiKey'));
             setIsKeyReady(false);
         } else {
@@ -193,7 +193,7 @@ const App: React.FC = () => {
 
             <p className="text-xs text-[#F0F0F0]/50 mt-8">
                 {t('apiKeyBillingPre')}{' '}
-                <a href="https://ai.google.dev/gemini-api/docs/billing" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#F0C38E]">
+                <a href="https://huggingface.co/pricing" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#F0C38E]">
                     {t('apiKeyBillingLink')}
                 </a>.
             </p>
@@ -222,7 +222,7 @@ const App: React.FC = () => {
         />
       </main>
       <footer className="text-center p-4 text-[#F0F0F0]/50 text-sm">
-        <p>Powered by Google Gemini. Design by lubianiec.</p>
+        <p>Powered by Hugging Face. Design by lubianiec.</p>
       </footer>
     </div>
   );

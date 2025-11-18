@@ -5,7 +5,7 @@
   <p>
     <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React Badge" />
     <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript Badge" />
-    <img src="https://img.shields.io/badge/Google%20Gemini-8E75B7?style=for-the-badge&logo=google-gemini&logoColor=white" alt="Gemini Badge" />
+    <img src="https://img.shields.io/badge/Hugging%20Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" alt="Hugging Face Badge" />
     <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS Badge" />
   </p>
 </div>
@@ -29,7 +29,7 @@ Got a brilliant idea but don't know how to ask an AI to create it? **Prompt Wiza
     -   **Kompaktowy**: Szybka, gotowa do wklejenia lista słów kluczowych dla modeli text-to-image.
     -   **Szczegółowy**: Pełna kontrola! Edytuj każdy moduł promptu (scena, postać, styl), aby dopracować swoją wizję.
     -   **Wideo**: Połącz obraz z opisem ruchu, aby stworzyć kinowe prompty wideo, które zachowują spójność wizualną.
--   🧠 **Inteligentna Analiza**: Wykorzystuje potęgę **Google Gemini**, aby dogłębnie zrozumieć Twoje intencje i wygenerować precyzyjne, skuteczne prompty.
+-   🧠 **Inteligentna Analiza**: Wykorzystuje potęgę **Hugging Face**, aby dogłębnie zrozumieć Twoje intencje i wygenerować precyzyjne, skuteczne prompty.
 -   🌐 **Dwujęzyczny Interfejs**: Płynnie przełączaj się między **polskim** a **angielskim**.
 -   🎨 **Czysty i Elegancki Design**: Neomorficzny ciemny motyw, który jest przyjemny dla oczu i pozwala skupić się na tworzeniu.
 
@@ -46,10 +46,10 @@ Got a brilliant idea but don't know how to ask an AI to create it? **Prompt Wiza
 
 ## 🛠️ Jak to Działa & Stos Technologiczny / How It Works & Tech Stack
 
-Aplikacja komunikuje się z **Google Gemini API**, wysyłając Twoje dane wejściowe wraz ze specjalnie przygotowanymi instrukcjami systemowymi. Te instrukcje prowadzą model AI, aby wygenerował odpowiedź w idealnym formacie – czy to jako ustrukturyzowany JSON, czy zwięzły akapit. Cały proces jest zoptymalizowany pod kątem najwyższej jakości.
+Aplikacja komunikuje się z **Hugging Face API**, wysyłając Twoje dane wejściowe wraz ze specjalnie przygotowanymi instrukcjami systemowymi. Te instrukcje prowadzą model AI, aby wygenerował odpowiedź w idealnym formacie – czy to jako ustrukturyzowany JSON, czy zwięzły akapit. Cały proces jest zoptymalizowany pod kątem najwyższej jakości.
 
 -   **Frontend**: React, TypeScript
--   **AI**: Google Gemini API (`@google/genai`)
+-   **AI**: Hugging Face Inference API (`@huggingface/inference`)
 -   **Styling**: Tailwind CSS
 -   **UI Design**: Neumorphism (Design by **lubianiec**)
 

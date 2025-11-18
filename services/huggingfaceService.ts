@@ -1,6 +1,9 @@
 import { HfInference } from "@huggingface/inference";
 import { PromptStructure, Locale } from '../types';
 
+// Default Hugging Face model for text generation
+const DEFAULT_HF_MODEL = 'Qwen/Qwen2.5-72B-Instruct';
+
 const getHuggingFaceClient = () => {
   const apiKeyFromSession = sessionStorage.getItem('huggingface_api_key');
   const apiKey = apiKeyFromSession || process.env.API_KEY;
@@ -36,9 +39,6 @@ const getSystemInstruction = (task: 'structure' | 'compact' | 'video' | 'profess
 }`;
 
     const instructions = {
-        pl: { // Polish instructions are kept for potential future use but are not used for generation.
-            // ... (polish instructions kept for reference)
-        },
         en: {
             structure: `You are an expert prompt engineer. Your task is to generate a structured JSON prompt for text-to-image models. Each field in the JSON must be populated with a rich, comma-separated list of keywords, phrases, and concepts. If a person or character is a prominent subject, describe their clothing, attire, and accessories in the \`outfit\` field. If no character is present, the \`outfit\` field must be an empty string. Ensure the \`details\` field always includes keywords for the highest quality: \`8k resolution, 4k resolution, photorealistic, masterpiece, --ar 16:9\`. Do not use full sentences. All output must be in English. Return ONLY a valid JSON object matching this schema: ${jsonSchema}. If any part of the generated prompt might be considered sensitive or violate content policies, intelligently rephrase it to be policy-compliant while preserving the core artistic or descriptive intent.`,
             structureText: `You are an expert prompt engineer. Your task is to generate a structured JSON prompt for text-to-image models based on the user's idea. Each field must be populated with a rich, comma-separated list of keywords. If the user's idea clearly describes a character, describe their clothing in the \`outfit\` field; otherwise, it must be an empty string. Ensure the \`details\` field always includes keywords for the highest quality: \`8k resolution, 4k resolution, photorealistic, masterpiece, --ar 16:9\`. Do not use full sentences. All output must be in English. Return ONLY a valid JSON object matching this schema: ${jsonSchema}. If any part of the generated prompt might be considered sensitive or violate content policies, intelligently rephrase it to be policy-compliant while preserving the core artistic or descriptive intent.`,
@@ -71,11 +71,10 @@ Do not include any other text, greetings, or explanations outside of this struct
 const callHuggingFaceTextGeneration = async (prompt: string, systemInstruction: string): Promise<string> => {
   const hf = getHuggingFaceClient();
   
-  // Using a powerful text generation model
   const fullPrompt = `${systemInstruction}\n\n${prompt}`;
   
   const response = await hf.textGeneration({
-    model: 'Qwen/Qwen2.5-72B-Instruct',
+    model: DEFAULT_HF_MODEL,
     inputs: fullPrompt,
     parameters: {
       max_new_tokens: 2048,
@@ -89,10 +88,7 @@ const callHuggingFaceTextGeneration = async (prompt: string, systemInstruction: 
 };
 
 export const generatePromptFromImage = async (base64Image: string, mimeType: string, locale: Locale): Promise<PromptStructure> => {
-  // Note: Hugging Face Inference API has limited support for vision models
-  // For image analysis, we would need to use a vision-to-text model or multimodal model
-  // For now, we'll throw an error indicating this limitation
-  throw new Error("Image analysis is not yet supported with Hugging Face API. Please use text input instead or provide a Hugging Face API key with access to a vision model.");
+  throw new Error("Image analysis is not currently supported. Please use text input instead.");
 };
 
 export const generatePromptFromText = async (inputText: string, locale: Locale): Promise<PromptStructure> => {
@@ -111,11 +107,11 @@ export const generateCompactPromptFromText = async (inputText: string, locale: L
 };
   
 export const generateCompactPromptFromImage = async (base64Image: string, mimeType: string, locale: Locale): Promise<string> => {
-  throw new Error("Image analysis is not yet supported with Hugging Face API. Please use text input instead.");
+  throw new Error("Image analysis is not currently supported. Please use text input instead.");
 };
 
 export const generateVideoPromptFromImageAndText = async (base64Image: string, mimeType: string, videoDescription: string, locale: Locale, includeImageDetails?: boolean): Promise<string> => {
-  throw new Error("Image-to-video prompt generation is not yet supported with Hugging Face API. Please use text-only input.");
+  throw new Error("Image-to-video prompt generation is not currently supported. Please use text-only input.");
 }
 
 export const generateProfessionalPromptFromText = async (inputText: string, locale: Locale): Promise<string> => {
@@ -126,9 +122,9 @@ export const generateProfessionalPromptFromText = async (inputText: string, loca
 };
 
 export const generateCompactImageEditPrompt = async (base64Image: string, mimeType: string, changes: string, locale: Locale): Promise<string> => {
-  throw new Error("Image editing prompts are not yet supported with Hugging Face API. Please use text-only input.");
+  throw new Error("Image editing prompts are not currently supported. Please use text-only input.");
 };
 
 export const generateStructuredImageEditPrompt = async (base64Image: string, mimeType: string, changes: string, locale: Locale): Promise<PromptStructure> => {
-  throw new Error("Image editing prompts are not yet supported with Hugging Face API. Please use text-only input.");
+  throw new Error("Image editing prompts are not currently supported. Please use text-only input.");
 };

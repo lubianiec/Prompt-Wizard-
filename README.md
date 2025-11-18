@@ -55,6 +55,20 @@ Aplikacja komunikuje się z **Google Gemini API**, wysyłając Twoje dane wejśc
 
 ---
 
+## 🚀 Deploy to Vercel / Wdrożenie na Vercel
+
+This app is ready to deploy on Vercel! Follow these steps:
+
+1.  **Import this repository** to your Vercel account
+2.  **Set up environment variables** in your Vercel project settings:
+    -   For the full Gemini-powered version: `GEMINI_API_KEY` (get your API key from [Google AI Studio](https://aistudio.google.com/))
+    -   For the simple HuggingFace version: `VITE_HF_TOKEN` (get your token from [Hugging Face](https://huggingface.co/settings/tokens))
+3.  **Deploy** - Vercel will automatically build and deploy your app!
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/lubianiec/Prompt-Wizard)
+
+---
+
 ## 🤝 Kontrybucje / Contributing
 
 Masz pomysł na ulepszenie? Chcesz naprawić błąd? Kontrybucje są mile widziane!
